@@ -1,0 +1,118 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+
+
+# Data directories
+face_spoofing_data/
+presentations/
+*.csv
+*.json
+*.xml
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+data/
+datasets/
+archive*/
+
+# Model files
+*.h5
+*.pb
+*.onnx
+*.pt
+*.pth
+*.ckpt
+models/
+checkpoints/
+
+# Logs and outputs
+*.log
+logs/
+outputs/
+results/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Image files (large datasets)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Large data files
+*.parquet
+*.feather
+*.arrow
+
+# Weights and embeddings
+*.weights
+*.embedding
+
+# Cache directories
+.cache/
+cache/
+__cache__/
+
+# Jupyter notebook outputs (if you want to ignore outputs)
+# Uncomment if you want to ignore notebook outputs:
+# *.ipynb
