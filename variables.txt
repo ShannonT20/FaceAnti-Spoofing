@@ -1,0 +1,67 @@
+Face Spoofing Detection Challenge - Variable Descriptions
+================================================================================
+
+CSV Files:
+----------
+
+1. train.csv
+   - image_id: Unique identifier for each training image
+   - filename: Name of the image file
+   - label: Ground truth label (0=Real face, 1=Fake/Spoofed face)
+
+2. validation.csv
+   - image_id: Unique identifier for each validation image (image_01, image_02, ..., image_723)
+   - filename: Name of the image file (image_01.jpg, image_02.jpg, etc.)
+   - Note: Labels are NOT provided in this file. Use this to generate predictions for ranking.
+   - Note: This is used for ranking submissions. DO NOT use for training.
+
+3. test.csv
+   - image_id: Unique identifier for each test image
+   - filename: Name of the image file
+   - Note: Labels are not provided. Use this to generate predictions.
+
+4. reference.csv
+   - image_id: Unique identifier for validation images (image_01, image_02, ..., image_723)
+   - label: Ground truth label (real=Real face, fake=Fake/Spoofed face)
+   - Note: This file is ONLY for organizers/evaluators. Participants should NOT use or access this file.
+   - Note: Organizers use this to evaluate participant submissions on validation data.
+
+5. sample_submission.csv
+   - image_id: Unique identifier for validation images (image_01, image_02, ..., image_723)
+   - real: Probability of being a real face (0.0 to 1.0)
+   - fake: Probability of being a fake/spoofed face (0.0 to 1.0)
+   - Note: This is the template for submission format. real + fake = 1.0 for each prediction
+   - Note: Replace with your model's probability predictions
+
+Data Structure:
+--------------
+- Each image has a corresponding color (RGB) and depth (grayscale) version
+- Color images: face_spoofing_data/train_img/train_img/color/
+- Depth images: face_spoofing_data/train_img/train_img/depth/
+- Validation images: face_spoofing_data/val_img/val_img/color/ and depth/
+- Validation images are named sequentially: image_01.jpg, image_02.jpg, ..., image_723.jpg
+
+Labels:
+-------
+- real: Real face (authentic)
+- fake: Fake face (spoofed - printed photo, video replay, mask, etc.)
+- Note: In train.csv and validation.csv, labels are "real" or "fake". For model training, convert to 0 (real) or 1 (fake).
+
+Evaluation:
+-----------
+- Use train.csv for training your model
+- Use validation.csv to generate predictions (labels NOT provided - you predict them!)
+- Submit your predictions on validation.csv in the submission format for ranking
+- Organizers will evaluate your predictions using reference.csv (which you don't have access to)
+- Generate predictions for test.csv and submit as sample_submission.csv format
+- Do NOT use validation.csv for training (this would cause data leakage)
+
+Submission Format:
+-----------------
+Your submission CSV should have:
+- image_id: Image identifier from validation.csv (image_01, image_02, etc.)
+- real: Probability of being a real face (0.0 to 1.0)
+- fake: Probability of being a fake face (0.0 to 1.0)
+- Note: real + fake must equal 1.0 for each prediction
+- Same order as sample_submission.csv
+- Format: image_id,real,fake

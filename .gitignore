@@ -31,7 +31,9 @@ ENV/
 # Data directories
 face_spoofing_data/
 presentations/
-*.csv
+# CSV files - ignore reference.csv (organizers only)
+# Note: Other CSV files (sample_submission.csv, validation.csv, train.csv, test.csv) are tracked
+reference.csv
 *.json
 *.xml
 *.h5
@@ -112,6 +114,14 @@ Thumbs.db
 .cache/
 cache/
 __cache__/
+
+# Scripts for generating CSV files (not needed in repository)
+create_csv_files.py
+update_sample_submission.py
+update_validation_files.py
+
+# Reference file (only for organizers/evaluators)
+reference.csv
 
 # Jupyter notebook outputs (if you want to ignore outputs)
 # Uncomment if you want to ignore notebook outputs:
