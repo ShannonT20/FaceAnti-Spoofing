@@ -1,0 +1,32 @@
+# Face Spoofing Detection Challenge - Requirements
+# Zindi + IndabaX Zimbabwe Hackathon: Building Africa's Next Generation of AI Innovators
+
+# Deep Learning Framework
+tensorflow>=2.10.0
+
+# Data Processing
+numpy>=1.21.0
+pandas>=1.3.0
+
+# Image Processing
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# Machine Learning
+scikit-learn>=1.0.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Jupyter Notebook (optional but recommended)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Additional utilities
+tqdm>=4.62.0  # Progress bars (if used)
+
+# Note: Python 3.8+ is recommended
+# For GPU support, install tensorflow-gpu or tensorflow[and-cuda] separately
+# For Apple Silicon (M1/M2), use tensorflow-macos and tensorflow-metal
+
