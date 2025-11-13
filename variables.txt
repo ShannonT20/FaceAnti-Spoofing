@@ -5,63 +5,77 @@ CSV Files:
 ----------
 
 1. train.csv
-   - image_id: Unique identifier for each training image
-   - filename: Name of the image file
+   - image_id: Unique identifier for each training image (actual filename without extension)
+   - filename: Name of the image file (e.g., 10_1.avi_100_real.jpg)
    - label: Ground truth label (0=Real face, 1=Fake/Spoofed face)
+   - Total: 1655 training images (404 real, 1251 fake)
+   - Location: face_spoofing_data/train_img/train_img/color/
 
 2. validation.csv
-   - image_id: Unique identifier for each validation image (image_01, image_02, ..., image_723)
-   - filename: Name of the image file (image_01.jpg, image_02.jpg, etc.)
+   - image_id: Unique identifier for each validation image (actual filename without extension, e.g., 10_1.avi_100_real)
+   - filename: Name of the image file (e.g., 10_1.avi_100_real.jpg)
    - Note: Labels are NOT provided in this file. Use this to generate predictions for ranking.
    - Note: This is used for ranking submissions. DO NOT use for training.
+   - Total: 2408 validation images
+   - Location: face_spoofing_data/val_img/val_img/color/
 
 3. test.csv
-   - image_id: Unique identifier for each test image
-   - filename: Name of the image file
-   - Note: Labels are not provided. Use this to generate predictions.
+   - image_id: Unique identifier for each test image (image_01, image_02, ..., image_654)
+   - filename: Name of the image file (image_01.jpg, image_02.jpg, etc.)
+   - Note: Labels are NOT provided. Use this to generate predictions.
+   - Note: This is used for final evaluation. DO NOT use for training.
+   - Total: 620 test images
+   - Location: face_spoofing_data/test_img/test_img/color/
 
-4. reference.csv
-   - image_id: Unique identifier for validation images (image_01, image_02, ..., image_723)
-   - label: Ground truth label (real=Real face, fake=Fake/Spoofed face)
-   - Note: This file is ONLY for organizers/evaluators. Participants should NOT use or access this file.
-   - Note: Organizers use this to evaluate participant submissions on validation data.
 
 5. sample_submission.csv
-   - image_id: Unique identifier for validation images (image_01, image_02, ..., image_723)
+   - image_id: Unique identifier for test images (image_01, image_02, ..., image_654)
    - real: Probability of being a real face (0.0 to 1.0)
    - fake: Probability of being a fake/spoofed face (0.0 to 1.0)
    - Note: This is the template for submission format. real + fake = 1.0 for each prediction
    - Note: Replace with your model's probability predictions
+   - Note: Must match test.csv image_ids and order
 
 Data Structure:
 --------------
 - Each image has a corresponding color (RGB) and depth (grayscale) version
-- Color images: face_spoofing_data/train_img/train_img/color/
-- Depth images: face_spoofing_data/train_img/train_img/depth/
+- Training images: face_spoofing_data/train_img/train_img/color/ and depth/
 - Validation images: face_spoofing_data/val_img/val_img/color/ and depth/
-- Validation images are named sequentially: image_01.jpg, image_02.jpg, ..., image_723.jpg
+- Test images: face_spoofing_data/test_img/test_img/color/ and depth/
+- Validation CSV uses actual filenames as image_id (not sequential numbering)
+- Test CSV uses sequential IDs: image_01, image_02, ..., image_654
 
 Labels:
 -------
 - real: Real face (authentic)
 - fake: Fake face (spoofed - printed photo, video replay, mask, etc.)
-- Note: In train.csv and validation.csv, labels are "real" or "fake". For model training, convert to 0 (real) or 1 (fake).
+- Note: In train.csv, labels are 0 (real) or 1 (fake)
+- Note: In reference.csv, labels are "real" or "fake"
+- Note: For model training, convert to 0 (real) or 1 (fake) as needed
 
 Evaluation:
 -----------
-- Use train.csv for training your model
-- Use validation.csv to generate predictions (labels NOT provided - you predict them!)
+- Use train.csv for training your model (1655 images with labels)
+- Use validation.csv to generate predictions (2408 images, labels NOT provided - you predict them!)
 - Submit your predictions on validation.csv in the submission format for ranking
-- Organizers will evaluate your predictions using reference.csv (which you don't have access to)
-- Generate predictions for test.csv and submit as sample_submission.csv format
-- Do NOT use validation.csv for training (this would cause data leakage)
+- Generate predictions for test.csv (620 images, labels NOT provided)
+- Submit test predictions in sample_submission.csv format
+- Organizers will evaluate your test predictions using reference.csv (which you don't have access to)
+- Do NOT use validation.csv or test.csv for training (this would cause data leakage)
 
 Submission Format:
 -----------------
 Your submission CSV should have:
-- image_id: Image identifier from validation.csv (image_01, image_02, etc.)
+- image_id: Image identifier from test.csv (image_01, image_02, ..., image_654)
 - real: Probability of being a real face (0.0 to 1.0)
 - fake: Probability of being a fake face (0.0 to 1.0)
 - Note: real + fake must equal 1.0 for each prediction
-- Same order as sample_submission.csv
+- Same order as test.csv
 - Format: image_id,real,fake
+
+Data Statistics:
+---------------
+- Training images: 1655 (with labels: 404 real=0, 1251 fake=1)
+- Validation images: 2408 (no labels - for submission ranking)
+- Test images: 620 (no labels - for final evaluation)
+- Reference labels: 620 (486 real, 134 fake - for organizers only)
