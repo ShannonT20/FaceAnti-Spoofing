@@ -122,6 +122,8 @@ update_validation_files.py
 
 # Reference file (only for organizers/evaluators)
 reference.csv
+reference_public.csv
+reference_private.csv
 
 # Jupyter notebook outputs (if you want to ignore outputs)
 # Uncomment if you want to ignore notebook outputs:
